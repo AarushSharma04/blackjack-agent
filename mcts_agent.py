@@ -82,6 +82,10 @@ class MCTSNode:
         if self.visits == 0:
             return float('inf')
         
+        if self.parent is None:
+            # Root node - just return exploitation value
+            return self.total_reward / self.visits
+        
         exploitation = self.total_reward / self.visits
         exploration = exploration_constant * math.sqrt(
             math.log(self.parent.visits) / self.visits

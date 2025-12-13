@@ -52,7 +52,7 @@ def main():
         evaluator.print_results(basic_results)
         
         if args.agent == 'both':
-            evaluator.compare_agents(mcts_results, basic_results)
+            evaluator.compare_agents(mcts_results, basic_results, show_regret=True)
     
     # Q-learning agent will be added later
     
