@@ -317,8 +317,9 @@ def train_dqn(agent: DQNAgent, num_episodes: int = 10000,
             next_state, reward, done = game.step(action)
             next_state_features = state_to_features(next_state)
             
-            # Store transition
-            agent.store_transition(state_features, action, reward, 
+            # Store transition (use 0.0 for intermediate rewards, actual reward at terminal)
+            reward_value = reward if reward is not None else 0.0
+            agent.store_transition(state_features, action, reward_value, 
                                   next_state_features, done)
             
             # Train
